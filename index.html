@@ -10,9 +10,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
     <title>Mynha</title>
+    <style>
+
+    </style>
 </head>
 <body>
+    <div class="overlay" id="overlay" style="z-index: 1;">
+        <div class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2 class="text-center text-black"><i>Enquiry Form</i></h2>
+          <div class="container2">
+             <div class="row">
+                <div class="col-md-6">
+                    <img src="img/logo.png" alt="" style="width: 50%; margin-left: 25%;">
+                    <h5 class="text-center" style="font-weight: 600;
+                    color: black;margin-top: 10px;"><i>Building Tomorrow, Today</i></h5>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <input type="text" class="frm_1" id="name" name="name" placeholder="Name" required><br>
+                        <input type="email" class="frm_1" id="email" name="email" placeholder="Email" required><br>
+                        <input type="number"class="frm_1"  id="number" name="number" placeholder="Number" required><br>
+                        <input type="msg" class="frm_1" id="msg" name="msg" placeholder="Message" required><br>
+                        <button type="submit" class="fm_btn">Submit</button>
+                    </form>
+                </div>
+             </div>
+          </div>
+         
+        </div>
+    </div>
+    <!--pop enquiry form  -->
+    <script>
+        function openPopup() {
+            document.getElementById("overlay").style.display = "flex";
+        }
+    
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+        }
+    
+        window.onload = function () {
+            openPopup();
+        };
+    </script>
+    
     <div class="video-container">  
         <video autoplay muted loop>
             <source src="img/Website_Banner_Video_4.mp4" type="video/mp4">
@@ -23,23 +67,186 @@
             <a href="#" class="custom-logo">
                 <img src="img/logo.png" alt="" style="width:80px">
             </a>
-            <div class="custom-buttons">
-                <button class="custom-button">Latest Projects</button>
-                <button class="custom-button2">Enquire Now</button>
-                <img src="img/menu.png" alt="" class="custom-menu">
+            <div  class="custom-buttons2" >
+                <!-- <img src="img/menu.png" alt="" class="custom-menu" onclick="toggleMobileMenu()" onclick="toggleSidebar()"> -->
+                <img src="img/menu.png" alt="" class="custom-menu" onclick="toggleMenu()">
             </div>
+            <div class="custom-buttons">
+                <a href="index.html" style="text-decoration: none;"><div class="custom-button">Home</div></a>
+               <a href="" style="text-decoration: none;"> <div class="custom-button">About Us</div></a>
+                <a href="" style="text-decoration: none;"><div class="custom-button">Projects</div></a>
+                <a href="" style="text-decoration: none;"><div class="custom-button">Career</div></a>
+               <a href="" style="text-decoration: none;"> <div class="custom-button">Channel Partner</div></a>
+               <a href="contact-us.html" style="text-decoration: none;"> <div class="custom-button">Contact Us</div></a>
+              
+            </div>
+           
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="custom-button3" onclick="toggleMobileSubMenu('home')">Home</div>
+                <div class="custom-button3" onclick="toggleMobileSubMenu('about')">About Us</div>
+                <div class="custom-button3" onclick="toggleMobileSubMenu('projects')">Projects</div>
+                <div class="custom-button3" onclick="toggleMobileSubMenu('career')">Career</div>
+                <div class="custom-button3" onclick="toggleMobileSubMenu('cp')">Channel Partner</div>
+                <div class="custom-button3" onclick="toggleMobileSubMenu('contact')">Contact Us</div>
+            </div>
+         
         </div>
-        </div>
+    </div>
+</div>
+<!-- navbar for mobile -->
+<script>
+    // function toggleMobileMenu() {
+    //     var mobileMenu = document.getElementById("mobileMenu");
+    //     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    //     if (screenWidth <= 768) { 
+    //         mobileMenu.style.display = (mobileMenu.style.display === "block") ? "none" : "block";
+    //     }
+    // }
+
+    // function toggleMobileSubMenu(menuItem) {
+    //     var mobileButtons = document.querySelectorAll('.mobile-menu .custom-button3');
+    //     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    //     if (screenWidth <= 768) { 
+    //         mobileButtons.forEach(function(button) {
+    //             button.style.display = (button.getAttribute('data-target') === menuItem) ? "block" : "none";
+    //         });
+    //     }
+    // }
+
+    function toggleMenu() {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        if (screenWidth <= 768) {
+            toggleMobileMenu();
+        } else {
+            toggleSidebar();
+        }
+    }
+
+    function toggleMobileMenu() {
+        var mobileMenu = document.getElementById("mobileMenu");
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        if (screenWidth <= 768) { 
+            mobileMenu.style.display = (mobileMenu.style.display === "block") ? "none" : "block";
+        }
+    }
+
+    function toggleMobileSubMenu(menuItem) {
+        var mobileButtons = document.querySelectorAll('.mobile-menu .custom-button3');
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        if (screenWidth <= 768) { 
+            mobileButtons.forEach(function(button) {
+                button.style.display = (button.getAttribute('data-target') === menuItem) ? "block" : "none";
+            });
+        }
+    }
+    // document.getElementById("mySidebar").style.width = "0";
+    function toggleSidebar() {
+        document.getElementById("mySidebar").style.display="block";
+        document.getElementById("mySidebar").style.width = document.getElementById("mySidebar").style.width === "450px" ? "0" : "450px";
+    }
+</script>
+
+
+<!-- sidebar -->
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
+    <h2 class="expl_head">Explore Our Identity</h2>
+    <h4 class="expl_head"> Project Name</h4>
+    <a href="#">
+        <div class="container2"></div>
+           <div class="row">
+            <div class="col-md-6">
+                <img src="img/img1.jpg" class="w-100" alt="">
+         </div>
+         <div class="col-md-6">
+            <h6 class="text-white">Project 1</h6>
+            <h6 class="text-white">Rera No</h6>
+            <h6 class="text-white">Location</h6> 
+         </div>
+           </div>
+       
+    </a>
+    <a href="#">
+        <div class="container2"></div>
+           <div class="row">
+            <div class="col-md-6">
+                <img src="img/img1.jpg" class="w-100" alt="">
+         </div>
+         <div class="col-md-6">
+            <h6 class="text-white">Project 1</h6>
+            <h6 class="text-white">Rera No</h6>
+            <h6 class="text-white">Location</h6> 
+         </div>
+           </div>
+       
+    </a>
+    <a href="#">
+        <div class="container2"></div>
+           <div class="row">
+            <div class="col-md-6">
+                <img src="img/img1.jpg" class="w-100" alt="">
+         </div>
+         <div class="col-md-6">
+            <h6 class="text-white">Project 1</h6>
+            <h6 class="text-white">Rera No</h6>
+            <h6 class="text-white">Location</h6> 
+         </div>
+           </div>
+       
+    </a>
+    <a href="#">
+        <div class="container2"></div>
+           <div class="row">
+            <div class="col-md-6">
+                <img src="img/img1.jpg" class="w-100" alt="">
+         </div>
+         <div class="col-md-6">
+            <h6 class="text-white">Project 1</h6>
+            <h6 class="text-white">Rera No</h6>
+            <h6 class="text-white">Location</h6> 
+         </div>
+           </div>
+       
+    </a>
+    <a href="#">
+        <div class="container2"></div>
+           <div class="row">
+            <div class="col-md-6">
+                <img src="img/img1.jpg" class="w-100" alt="">
+         </div>
+         <div class="col-md-6">
+            <h6 class="text-white">Project 1</h6>
+            <h6 class="text-white">Rera No</h6>
+            <h6 class="text-white">Location</h6> 
+         </div>
+           </div>
+       
+    </a>
+</div>
+
+<!-- sidebar -->
+<!-- <script>
+    function toggleSidebar() {
+        document.getElementById("mySidebar").style.width = document.getElementById("mySidebar").style.width === "450px" ? "0" : "450px";
+    }
+</script> -->
+
 <!-- carousel -->
 
 <div class="container2 about_main">
   <div class="row">
-    <div class="col-md-5 about">
-        <h1><u class="line_lgao">JOURNEY INTO <br>OUR PROJECTS</u></h1>
+    <div class="col-md-6 about">
+        <h1><u class="line_lgao">The Saga of Your Home: <br>A Builder's Tale</u></h1>
+       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
        
     </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" style="height: 300px;">
                 <div class="carousel-item active">
@@ -113,30 +320,70 @@
       
     </div>
   </div>
-<!-- heart -->
-<div class="container2 " id="nature_hrt">
-    <div class="row">
-      <div class="col-md-6 one_ht">
-        <h1><u class="line_lgao">DISCOVER THE HEART OF MYHNA'S CULTURE.</u></h1>
-      </div>
-      <div class="col-md-6 one_ht">
-        <img src="img/heart.jpg" alt="" class="heart">
-      </div>
 
-          <div class="col-md-8 one_ht">
-              <img src="img/heart.jpg" alt="" class="heart">
+
+<!-- count -->
+<section class="layout-pt-md layout-pb-md bg-grey pattern_bg_1" style="padding: 70px;">
+    <div class="container2">
+      <div class="row justify-content-between md:pt-48">
+
+        <div class="col-lg-auto col-md-6">
+          <div class="counter">
+            <div class="counter__back">
+              1878
+            </div>
+
+            <div class="counter__content">
+              <div class="counter__number text-black count">1878 </div>
+              <h5 class="counter__title text-black">happy<br>Families</h5>
+            </div>
           </div>
-        <div class="col-md-6 one_ht">
-           <img src="img/heart.jpg" alt="" class="heart2">
-         </div>
-      <div class="col-md-6 one_ht">
-        <h1><u class="line_lgao">Crafting Happiness</u></h1>
-        <p >Lorem ipsum dolor sit amet,  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-    
+        </div>
+
+        <div class="col-lg-auto col-md-6">
+          <div class="counter">
+            <div class="counter__back">
+              9
+            </div>
+
+            <div class="counter__content">
+              <div class="counter__number text-black count">9</div>
+              <h5 class="counter__title text-black">Years of<br>Experience</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-auto col-md-6">
+          <div class="counter">
+            <div class="counter__back">
+              12
+            </div>
+
+            <div class="counter__content">
+              <div class="counter__number text-black count">12</div>
+              <h5 class="counter__title text-black">Completed <br>Projects</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-auto col-md-6">
+          <div class="counter">
+            <div class="counter__back">
+              500k
+            </div>
+
+            <div class="counter__content">
+              <div class="counter__number count text-black">507000</div>
+              <h5 class="counter__title text-black">SQFT <br>Delivered</h5>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
     </div>
-</div> 
-</div>
+  </section>
+<!-- heart -->
+
 <!-- testimonial -->
 <div class="container2" style="background-color: #222222;padding: 60px;">
     <div class="row">
@@ -194,20 +441,6 @@
 </div>
 
 <!-- footer -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container2">
@@ -217,17 +450,13 @@
              <img src="img/logo.png" alt="" style="width: 90px;">
             </a><br>
            <h4>Raising the Bar in Construction Excellence.</h4>
-         
                 <div class="social-links mt-3">
                     <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
-                </div>
-                
+                </div>   
             </div>
- 
-
           <div class="col-lg-2 col-6 footer-links">
             <h3 style="font-weight: 600; color: #323232;"> Useful Links</h3>
             <ul class="footer-links2">
@@ -272,34 +501,6 @@
 
     </div> -->
   </footer><!-- End Footer -->
-
-  <div><br></div>
-
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
