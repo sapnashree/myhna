@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    font-family: "Poppins", Sans-serif !important;
+    overflow-x: hidden;
+    color: #615E5E;
+    line-height: 1.2;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px; 
+    box-sizing: border-box;
+    z-index: 1000; 
+    transition: background-color 0.3s ease; 
+}
+    .container.sticky {
+        background: linear-gradient(#80808047, #808080a1) !important;
+        border: 1px solid grey;
+        margin-top: 20px;
+        border-radius: 57px;
+    }
+.custom-logo {
+    cursor: pointer;
+    float: left; margin-left: 10px;
+}
+
+.custom-buttons {
+    float: right;
+}
+
+.custom-button,
+.custom-button2 {
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.custom-menu {
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+    width: 40px;
+}
+.about_main{
+    padding-top: 5%;
+   padding-left: 10%;
+   padding-bottom: 5%;
+}
+.about{
+   text-align: justify;
+}
+.line_lgao{
+    text-decoration: none;
+    border-bottom: 3px solid #ffdd15;
+}
+.imggg_0{
+    padding: 20px; 
+}
+.saoring_img{
+    border-radius: 25px;
+}
+.thumb{
+    width: 50px;
+    height: 50px;
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 25px 
+}
+.heart{
+    height: 30vh;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px 20px 20px 20px;
+    width: 100%;
+}
+.heart2{
+    height: 60vh;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px 20px 20px 20px;
+    width: 100%;
+}
+#nature_hrt{
+    padding-left: 160px;
+    padding-right: 160px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.one_ht{
+    /* margin-top:29px; */
+    margin-bottom:29px;
+}
+.testimonial{
+    padding: 170px;
+}
+.tes_align{
+    margin-left: 12%;
+}
