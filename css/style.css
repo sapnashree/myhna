@@ -39,10 +39,12 @@ video::-webkit-media-controls {
     transition: background-color 0.3s ease; 
 }
     .container.sticky {
-        background: linear-gradient(#80808047, #808080a1) !important;
-        border: 1px solid grey;
-        margin-top: 20px;
-        border-radius: 57px;
+        background: rgba(0, 0, 0, 0.3);
+    border: 1px solid grey;
+    margin-top: 20px;
+    border-radius: 57px;
+    box-shadow: rgba(3, 3, 3, 0.17) 0px 8px 32px 0px;
+    backdrop-filter: blur(5px );
     }
 .custom-logo {
     cursor: pointer;
