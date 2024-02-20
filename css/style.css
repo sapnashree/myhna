@@ -339,6 +339,9 @@ video::-webkit-media-controls {
 }
 
 @media only screen and (max-width: 768px) {
+    ol, ul {
+        padding-left: 0rem !important;
+    }
     .custom-buttons {
         display: none;
     }
