@@ -513,7 +513,7 @@ video::-webkit-media-controls {
          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
      }
      .m_d{
-        margin-left: 80px;
+        margin-left: 25%;
      }
      #projects{
         padding: 70px;
