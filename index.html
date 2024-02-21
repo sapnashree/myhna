@@ -7,53 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <title>Mynha</title>
 </head>
 <body>
    <!--pop enquiry form start -->
-    <div class="overlay" id="overlay" style="z-index: 1;">
-        <div class="popup">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h2 class="text-center text-black"><i>Enquiry Form</i></h2>
-          <div class="container2">
-             <div class="row">
+   <div class="overlay" id="overlay" style="z-index: 1;">
+    <div class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 class="text-center text-black"><i>Enquiry Form</i></h2>
+        <div class="container2">
+            <div class="row">
                 <div class="col-md-6">
                     <img src="img/logo.png" alt="" style="width: 50%; margin-left: 25%;">
-                    <h5 class="text-center" style="font-weight: 600;
-                    color: black;margin-top: 10px;"><i>Building Tomorrow, Today</i></h5>
+                    <h5 class="text-center" style="font-weight: 600; color: black;margin-top: 10px;"><i>Building Tomorrow, Today</i></h5>
                 </div>
                 <div class="col-md-6">
                     <form>
                         <input type="text" class="frm_1" id="name" name="name" placeholder="Name" required><br>
                         <input type="email" class="frm_1" id="email" name="email" placeholder="Email" required><br>
-                        <input type="number"class="frm_1"  id="number" name="number" placeholder="Number" required><br>
+                        <input type="number" class="frm_1" id="number" name="number" placeholder="Number" required><br>
                         <input type="msg" class="frm_1" id="msg" name="msg" placeholder="Message" required><br>
                         <button type="submit" class="fm_btn">Submit</button>
                     </form>
                 </div>
-             </div>
-          </div>
-         
+            </div>
         </div>
     </div>
-    <script>
-      function openPopup() {
-    document.getElementById("overlay").style.display = "flex";
-}
+  
+</div>
+<div class="toggler" id="toggler" onclick="toggleForm()">Enquiry Now</div>
+<script>
+    function openPopup() {
+        document.getElementById("overlay").style.display = "flex";
+        document.getElementById("toggler").style.display = "none"; // Hide the toggler initially
+    }
 
-function closePopup() {
-    document.getElementById("overlay").style.display = "none";
-}
+    function closePopup() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("toggler").style.display = "block"; // Display the toggler when closing the popup
+    }
 
-window.onload = function () {
-    openPopup();
-};
-    </script>
-    <!--pop enquiry form end -->
-    
+    function toggleForm() {
+        var form = document.getElementById("overlay");
+        form.style.display = form.style.display === "none" || form.style.display === "" ? "flex" : "none";
+    }
+
+    window.onload = function () {
+        openPopup();
+    };
+</script>
+ <!--pop enquiry form end -->
+
+
+    <!-- navbar -->
     <div class="video-container">  
         <video autoplay muted loop>
             <source src="img/Website_Banner_Video_4.mp4" type="video/mp4">
@@ -65,15 +74,12 @@ window.onload = function () {
                 <img src="img/logo.png" alt="" style="width:80px">
             </a>
             <div  class="custom-buttons2" >
-                <!-- <img src="img/menu.png" alt="" class="custom-menu" onclick="toggleMobileMenu()" onclick="toggleSidebar()"> -->
-                <img src="img/menu.png" alt="" class="custom-menu" onclick="toggleMenu()">
+                <div class="custom-menu custom-button one" onclick="toggleMenu()">Our Projects</div>
+                <img src="img/menu.png" alt="" class="custom-menu two" onclick="toggleMenu()">
             </div>
             <div class="custom-buttons">
               <a href="index.html" style="text-decoration: none;"><div class="custom-button active">Home</div></a>
              <a href="about.html" style="text-decoration: none;"> <div class="custom-button">About Us</div></a>
-              <a href="project.html" style="text-decoration: none;"><div class="custom-button">Projects</div></a>
-              <a href="career.html" style="text-decoration: none;"><div class="custom-button">Career</div></a>
-             <a href="cp.html" style="text-decoration: none;"> <div class="custom-button">Channel Partner</div></a>
              <a href="contact-us.html" style="text-decoration: none;"> <div class="custom-button">Contact Us</div></a>
             
           </div>
@@ -81,9 +87,9 @@ window.onload = function () {
             <div class="mobile-menu" id="mobileMenu">
               <a href="index.html" style="text-decoration: none;"> <div class="custom-button3" onclick="toggleMobileSubMenu('home')">Home</div></a>
               <a href="about.html" style="text-decoration: none;">   <div class="custom-button3" onclick="toggleMobileSubMenu('about')">About Us</div></a>
-              <a href="project.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('projects')">Projects</div></a>
-              <a href="career.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('career')">Career</div></a>
-              <a href="cp.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('cp')">Channel Partner</div></a>
+              <a href="project.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('projects')">Our Projects</div></a>
+              <!-- <a href="career.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('career')">Career</div></a>
+              <a href="cp.html" style="text-decoration: none;">  <div class="custom-button3" onclick="toggleMobileSubMenu('cp')">Channel Partner</div></a> -->
               <a href="contact-us.html" style="text-decoration: none;">   <div class="custom-button3" onclick="toggleMobileSubMenu('contact')">Contact Us</div></a>
             </div>
          
@@ -95,7 +101,7 @@ window.onload = function () {
     <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
     <h2 class="expl_head">Explore Our Identity</h2>
     <h4 class="expl_head"> Project Name</h4>
-    <a href="#">
+    <a href="project1.html">
         <div class="container2"></div>
            <div class="row">
             <div class="col-md-6">
@@ -166,206 +172,182 @@ window.onload = function () {
        
     </a>
 </div>
-<!-- carousel -->
-
-<div class="container2 about_main">
-  <div class="row">
-    <div class="col-md-6 about">
-        <h1><u class="line_lgao">The Saga of Your Home: <br>A Builder's Tale</u></h1>
-       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-       
-    </div>
-      <div class="col-md-6">
-        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner" style="height: 300px;">
-                <div class="carousel-item active">
-                    <img src="img/img1.jpg" class="d-block" alt="Slide 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/img1.jpg" class="d-block w-100" alt="Slide 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/img1.jpg" class="d-block w-100" alt="Slide 3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+<!-- intro -->
+<section class="layout-pt-lg overflow-visible z-2">
+  <div class="container2">
+    <div data-anim-wrap class="row align-items-center">
+      <div class="col-xl-5 col-lg-6 col-md-10">
+        <div class="aboutBack sm:d-none">
+         
         </div>
-      </div>
-  </div>
-</div>
 
-<!-- Projects -->
-<div class="container2 about_main" style="background-color: #222222;">
-    <div class="row">
-      <!-- <div class="col-md-4 about">
-          <h1 class="text-white text-left"><u class="line_lgao">Ethical Soaring, Unwavering Roots</u></h1>
-         <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-         <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-       <div style="display: flex;">
-          <img src="img/thumb.png" alt="" class="thumb">
-         <h5 class="text-white" style="margin-left:50px;"><span style="font-size: 3rem;">9</span> <br>Project Done</h5>  </div>
-      </div> -->
-      <div class="col-md-12">
-        <h2 class="text-center text-white">Beyond Construction, We Build Lifestyles</h2>
-        <h3 class="text-center text-white text-uppercase">Our Projects</h3>
-        <div class="row">
-          <div class="col-md-3 imggg_0" >
-            <img src="img/img1.jpg" class=" w-100 saoring_img" alt="Image 1"   style="height: 300px;"><br>
-            <h5 class="text-center text-white" style="margin-top: 10px;">Project 1</h5>
-            <h6 class="text-center text-white">Location</h6>
-            <h6 class="text-center text-white">RERA NO</h6>
-          </div>
-          <div class="col-md-3 imggg_0" >
-            <img src="img/img1.jpg" class="d-block w-100 saoring_img" alt="Image 2" style="height: 300px;">
-            <h5 class="text-center text-white" style="margin-top: 10px;">Project 2</h5>
-            <h6 class="text-center text-white">Location</h6>
-            <h6 class="text-center text-white">RERA NO</h6>
-          </div>
+        <div data-anim-child="slide-right delay-4" class="sectionHeading -left-line -about pr-12 lg:pr-0">
+          <span class="sectionHeading__subtitle">Know More</span>
+          <h2 class="sectionHeading__title"><i>Where Quality Meets Comfort: MYHNA Properties</i></h2>
+          <p class="sectionHeading__text">
+            MYHNA Properties takes extreme care to ensure that customer friendly designs and features are incorporated into every project. MYHNA Properties undying commitment to quality sets it apart from the rest. The growing number of satisfied customers is ample testimony of the Company’s attention to quality and aesthetics MYHNA Properties is a reputed construction company in Bangalore with a Very Good name for Quality Construction.</p>
 
-            <div class="col-md-3 imggg_0" >
-              <img src="img/img1.jpg" class="d-block w-100 saoring_img" alt="Image 3" style="height: 300px;">
-              <h5 class="text-center text-white" style="margin-top: 10px;">Project 3</h5>
-              <h6 class="text-center text-white">Location</h6>
-              <h6 class="text-center text-white">RERA NO</h6>
-            </div>
-            <div class="col-md-3 imggg_0" >
-              <img src="img/img1.jpg" class="d-block w-100 saoring_img" alt="Image 4" style="height: 300px;">
-              <h5 class="text-center text-white" style="margin-top: 10px;">Project 4</h5>
-              <h6 class="text-center text-white">Location</h6>
-              <h6 class="text-center text-white">RERA NO</h6>
-            </div>
+          <!--<div class="sectionHeading__button">-->
+          <!--  <a data-barba onclick="location.href='E-BROCHURE-final.pdf';" class="button -md -dark text-white">DOWNLOAD BROCHURE</a>-->
+          <!--</div>-->
+          <div class="sectionHeading__button">
+             <a data-barba onclick="showAlert();" class="button -md -dark text-white">DOWNLOAD BROCHURE</a>
           </div>
         </div>
       </div>
-     
-      
-      
+
+      <div class="col-xl-7 col-lg-6">
+        <div class="overlayImgs md:mt-60">
+          <div data-anim-child="img-right cover-black" class="overlayImgs__back">
+            <img src="img/img1.jpg" alt="2 & 3BHK-IN-Ravet">
+          </div>
+
+          <div data-anim-child="img-right cover-black delay-3" class="overlayImgs__front -border">
+            <img src="img/heart.jpg" alt="GLORIOUS-Tathastu">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
 <!-- count -->
 <section class="layout-pt-md layout-pb-md bg-grey pattern_bg_1" style="padding: 70px;">
-    <div class="container2">
-      <div class="row justify-content-between md:pt-48">
+  <div class="container2">
+    <div class="row justify-content-between md:pt-48">
 
-        <div class="col-lg-auto col-md-6">
-          <div class="counter">
-            <div class="counter__back">
-              1878
-            </div>
+      <div class="col-lg-auto col-md-6">
+        <div class="counter">
+          <div class="counter__back">
+            1878
+          </div>
 
-            <div class="counter__content">
-              <div class="counter__number text-black count">1878 </div>
-              <h5 class="counter__title text-black">happy<br>Families</h5>
-            </div>
+          <div class="counter__content">
+            <div class="counter__number text-black count">1878 </div>
+            <h5 class="counter__title text-black">happy<br>Families</h5>
           </div>
         </div>
+      </div>
 
-        <div class="col-lg-auto col-md-6">
-          <div class="counter">
-            <div class="counter__back">
-              9
-            </div>
+      <div class="col-lg-auto col-md-6">
+        <div class="counter">
+          <div class="counter__back">
+            9
+          </div>
 
-            <div class="counter__content">
-              <div class="counter__number text-black count">9</div>
-              <h5 class="counter__title text-black">Years of<br>Experience</h5>
-            </div>
+          <div class="counter__content">
+            <div class="counter__number text-black count">9</div>
+            <h5 class="counter__title text-black">Years of<br>Experience</h5>
           </div>
         </div>
+      </div>
 
-        <div class="col-lg-auto col-md-6">
-          <div class="counter">
-            <div class="counter__back">
-              12
-            </div>
+      <div class="col-lg-auto col-md-6">
+        <div class="counter">
+          <div class="counter__back">
+            12
+          </div>
 
-            <div class="counter__content">
-              <div class="counter__number text-black count">12</div>
-              <h5 class="counter__title text-black">Completed <br>Projects</h5>
-            </div>
+          <div class="counter__content">
+            <div class="counter__number text-black count">12</div>
+            <h5 class="counter__title text-black">Completed <br>Projects</h5>
           </div>
         </div>
+      </div>
 
-        <!-- <div class="col-lg-auto col-md-6">
-          <div class="counter">
-            <div class="counter__back">
-              500k
-            </div>
-
-            <div class="counter__content">
-              <div class="counter__number count text-black">507000</div>
-              <h5 class="counter__title text-black">SQFT <br>Delivered</h5>
-            </div>
+      <!-- <div class="col-lg-auto col-md-6">
+        <div class="counter">
+          <div class="counter__back">
+            500k
           </div>
-        </div> -->
 
+          <div class="counter__content">
+            <div class="counter__number count text-black">507000</div>
+            <h5 class="counter__title text-black">SQFT <br>Delivered</h5>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+</section>
+<!-- heart -->
+<!-- carousel -->
+<section style="padding: 70px;background: #e4e4e466;">
+  <div class="container2">
+  <div class="row">
+    <div class="col-md-4">
+        <h2 class="sectionHeading__title">Embark on the Extraordinary: Journey into Our Projects</h2>
+        <p class="sectionHeading__text">
+          At ‘MYHNA Properties’ we take utmost care to see that the air of friendliness and warmth is an integral part of our construction. That is the reason people who visit our projects, instinctively know that this is where they belong. This is their dream home, their nest at the end of every hectic day, their own space at the start of the day. We have an undying commitment to quality and timely delivery which sets us apart from the rest. We MYHNA Properties are behind some of the prestigious ventures in prime locations in Bangalore, Neyveli & Chennai. Every Venture stands as a testimony to the pristine image of the builders in the field of construction and real estate. With an enviable reputation, and the confidence people response in them has a concrete proof in the form of their highly appreciated ventures.</p>
+     </div>
+     <div class="col-md-8">
+      <div class="slider-container">
+        <div class="slider">
+          <div class="card"><img src="img/img1.jpg" alt="" class="carrr"></div>
+          <div class="card"><img src="img/heart.jpg" alt="" class="carrr"></div>
+          <div class="card"><img src="img/img1.jpg" alt="" class="carrr"></div>
+          <div class="card"><img src="img/heart.jpg" alt="" class="carrr"></div>
+          <div class="card"><img src="img/img1.jpg" alt="" class="carrr"></div>
+        </div>
+        <button class="slider-btn" id="prev">&lt;</button>
+        <button class="slider-btn" id="next">&gt;</button>
       </div>
     </div>
-  </section>
-<!-- heart -->
+  </div>
+</div>
+</section>
 
 <!-- testimonial -->
-<div class="container2" style="background-color: #222222;padding: 60px;">
+<div class="container2" style="background-color: #222222;padding: 70px;">
     <div class="row">
-        <h1 class="text-center text-white">Fueling Success, <br>Focused on Your Satisfaction</h1>
-        <div class="col-md-offset-2 col-md-6 testttttiii" >
-            <div id="testimonial-slider" class="owl-carousel">
-                <div class="testimonial">
-                    <div class="pic">
-                        <img src="img/user.webp">
-                    </div>
-                    <div class="testimonial-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt
-                            laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu!
-                        </p>
-                    </div>
-                    <h3 class="testimonial-title">
-                        <a href="#"></a>
-                        <small>-Client 1</small>
-                    </h3>
-                </div>
-
-                <div class="testimonial">
-                    <div class="pic">
-                        <img src="img/user.webp">
-                    </div>
-                    <div class="testimonial-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt
-                            laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu
-                        </p>
-                    </div>
-                    <h3 class="testimonial-title">
-                        <!-- <a href="#">Peter</a> -->
-                        <small>-Client 2</small>
-                    </h3>
-                </div>
-
-                <div class="testimonial">
-                    <div class="pic">
-                        <img src="img/user.webp">
-                    </div>
-                    <div class="testimonial-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt
-                            laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eum
-                            odit repellendus!
-                        </p>
-                    </div>
-                    <h3 class="testimonial-title">
-                        <!-- <a href="#">Sally</a> -->
-                        <small>-Client 3</small>
-                    </h3>
-                </div>
+      <div class="col-md-6">
+        <h2 class="sectionHeading__title text-white"><i>Success Written in Your Smile</i></h2>
+      </div>
+      <div class="col-md-6">
+        <p class="sectionHeading__text text-white testimo">
+          Explore the transformative journey of our delighted homeowners, as they transition from envisioning their dream home to proudly embracing the reality of owning a Myhna home.</p>
+      </div>
+      <div class="col-md-6 test_m">
+        <div class="testimonial-container">
+          <div class="testimonials">
+              <div class="testimonial active">
+                  <p>"Thanks, Myhna Projects! Your team's dedication and expertise made buying my dream house at Chaithanya Sharan a breeze. The entire experience was smooth, and my family loves our beautiful villa."</p>
+                  <p>- Smita</p>
+              </div>
+              <div class="testimonial">
+                  <p>"Kudos to Myhna Projects! They turned my dream into reality with a seamless home-buying process. Our villa at Chaithanya Sharan is not just a house; it's a haven we proudly call home"</p>
+                  <p>- Pankaj</p>
+              </div>
+             
+              <div class="testimonial">
+                  <p>"Myhna Projects delivered beyond my expectations! Buying my house was stress-free, and the team's attention to detail ensured I got exactly what I wanted. Highly recommended!"</p>
+                  <p>- Saps</p>
+              </div>
+              <div class="testimonial">
+                  <p>"Grateful to Myhna Projects for a fantastic home-buying journey. The team's professionalism and commitment resulted in my ideal villa at Chaithanya Sharan. Thrilled with the outcome"</p>
+                  <p>- Shruti</p>
+              </div>
+              <div class="testimonial">
+                <p>"Exceptional service from Myhna Projects! My family and I are overjoyed with our new villa. The team's support and expertise throughout the buying process were outstanding"</p>
+                <p>- Saps</p>
             </div>
-        </div>
+            <div class="testimonial">
+                <p>"Kudos to Myhna Projects! They turned my dream into reality with a seamless home-buying process. Our villa at Chaithanya Sharan is not just a house; it's a haven we proudly call home"</p>
+                <p>- Shruti</p>
+            </div>
+          </div>
+      
+          <div class="dot-container">
+              <div class="dot" onclick="showTestimonial(0)"></div>
+              <div class="dot" onclick="showTestimonial(1)"></div>
+              <div class="dot" onclick="showTestimonial(2)"></div>
+              <div class="dot" onclick="showTestimonial(3)"></div>
+              <div class="dot" onclick="showTestimonial(4)"></div>
+              <div class="dot" onclick="showTestimonial(5)"></div>
+          </div>
+      </div>
+      </div>
     </div>
 </div>
 
@@ -444,22 +426,106 @@ window.onload = function () {
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
-<!-- testimonial -->
+<!-- carousel -->
 <script>
-    $(document).ready(function(){
-        $('#testimonial-slider').owlCarousel({
-            items:1,
-            itemsDesktop:[1000,1],
-            itemsDesktopSmall:[979,1],
-            itemsTablet:[768,1],
-            pagination: false,
-            navigation:true,
-            navigationText:["",""],
-            slideSpeed:1000,
-            autoPlay:true
-        });
-    });
+  $(document).ready(function() {
+   const slider = $('.slider');
+   const cardWidth = $('.card').outerWidth(true);
+   let visibleCards = 3;
+   let autoSlideInterval;
+ 
+   $('.slider-container').width(cardWidth * visibleCards);
+ 
+   function nextSlide() {
+     slider.animate({
+       marginLeft: '-=' + cardWidth
+     }, 500, function() {
+       slider.append(slider.find('.card:first-child'));
+       slider.css('margin-left', 0);
+     });
+   }
+ 
+   function prevSlide() {
+     slider.prepend(slider.find('.card:last-child'));
+     slider.css('margin-left', '-' + cardWidth + 'px');
+     slider.animate({
+       marginLeft: '+=' + cardWidth
+     }, 500);
+   }
+ 
+   $('#next').on('click', function() {
+     clearInterval(autoSlideInterval);
+     nextSlide();
+   });
+ 
+   $('#prev').on('click', function() {
+     clearInterval(autoSlideInterval);
+     prevSlide();
+   });
+ 
+   function startAutoSlide() {
+     autoSlideInterval = setInterval(function() {
+       nextSlide();
+     }, 3000);
+   }
+   startAutoSlide();
+ 
+   // Update visibleCards for mobile view
+   $(window).on('resize', function() {
+     if ($(window).width() <= 768) {
+       visibleCards = 1;
+     } else {
+       visibleCards = 3;
+     }
+     $('.slider-container').width(cardWidth * visibleCards);
+   });
+ });
+ 
+ </script>
+
+ <!-- testimonial -->
+ <script>
+  let currentIndex = 0;
+
+  function showTestimonial(index) {
+      const testimonials = document.querySelectorAll('.testimonial');
+      testimonials.forEach((testimonial, i) => {
+          testimonial.style.display = i === index ? 'block' : 'none';
+      });
+
+      updateDots(index);
+  }
+
+  function updateDots(index) {
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+      });
+  }
+
+  function nextTestimonial() {
+      currentIndex = 1; // Set to 1 to always display the single testimonial
+      showTestimonial(currentIndex);
+  }
+
+  function prevTestimonial() {
+      currentIndex = 0; // Set to 0 to always display the single testimonial
+      showTestimonial(currentIndex);
+  }
+
+  function startAutomaticSlideshow() {
+      setInterval(() => {
+          nextTestimonial();
+      }, 5000); // Change the interval (in milliseconds) for automatic slideshow
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+      showTestimonial(currentIndex);
+      startAutomaticSlideshow();
+  });
 </script>
+
+
+
 </body>
 </html>
