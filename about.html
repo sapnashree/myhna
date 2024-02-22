@@ -346,10 +346,12 @@
       var bar = chart.querySelector('.js-chart-bar');
       var percentText = chart.querySelector('.js-chart-percent');
 
-      // Calculate the dash offset based on the percentage
-      var dashOffset = 100 - percent;
+      // Set fixed values for stroke-dashoffset and stroke-dasharray
+      var fixedDashOffset = 2.2091;
+      var fixedDashArray = '220.911px, 230.911px';
 
-      bar.style.strokeDasharray = dashOffset + ', 100';
+      bar.style.strokeDasharray = fixedDashArray;
+      bar.style.strokeDashoffset = fixedDashOffset + 'px';
       percentText.textContent = '0%';
 
       // Animate the percentage counting up
@@ -364,12 +366,17 @@
         var percentage = Math.min(progress / animationDuration * percent, percent);
         var rotation = (progress / rotationDuration) * 360; // Rotate 360 degrees during rotationDuration
 
-        bar.style.strokeDasharray = dashOffset + percentage + ', 100';
+        bar.style.strokeDashoffset = fixedDashOffset + 'px';
+        bar.style.strokeDasharray = fixedDashArray;
+        bar.style.transformOrigin = '50% 50%'; // Set the center as the rotation origin
         bar.style.transform = 'rotate(' + rotation + 'deg)';
         percentText.textContent = percentage.toFixed(0) + '%';
 
         if (progress < animationDuration) {
           requestAnimationFrame(animate);
+        } else {
+          // Remove the rotation transformation after rotation is complete
+          bar.style.transform = '';
         }
       }
 
@@ -377,6 +384,12 @@
     });
   });
 </script>
+
+
+
+
+
+
 
 </body>
 </html>
