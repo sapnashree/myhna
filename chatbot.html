@@ -1,1 +1,566 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+   @font-face {
+        font-family: 'bold';
+        src: url('https://hcurvecdn.com/font/Lato-Bold.woff2?v=3') format("truetype");
+    }
+   @font-face {
+        font-family: 'regular';
+        src: url('https://hcurvecdn.com/font/Lato-Regular.woff2?v=3') format("truetype");
+    }
+#box{
+    width: 300px;
+    height: 600px;
+    position: fixed;
+    right: 10px;
+    bottom: 0px;
+    font-family: regular;
+    user-select: none;
+    border: 1px solid black;
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box; z-index: 999;
+}
 
+#complete_chat{
+   display:flex;
+   flex-direction:column;
+   
+}
+#allchat::-webkit-scrollbar {
+    display: none;
+}
+
+.question{
+   position: relative;
+    color: black;
+    background-color: transparent;
+    width: 300px;
+    text-align: right;
+    bottom:20px;
+    font-size:14px;
+}
+.answer{
+  position: relative;
+    color: black;
+    background-color: transparent;
+    width: 300px;
+    text-align: left;
+    bottom:10px;
+    margin-bottom:15px;
+    font-size:14px;
+}
+#closeChatInside {
+    width:30px;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 3px;
+            right: 0px;
+            z-index: 1000; 
+        }
+        #openChat{
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 15px;
+            right: 5px;
+            z-index: 1000; 
+            width:60px;
+        }
+</style>
+<div id="buttons">
+   <img src="img/chatbot.png" alt="" id="openChat" onclick="openChat()" >
+</div>
+
+    <div id="box" style="display: none;">
+    <button >Close Chat</button>
+    <img src="img/close.png" alt="" id="closeChatInside" onclick="closeChatInside()" >
+        <div id="f1"><img src="https://sapnashree.github.io/myhna/img/about.jpg" style="position:absolute; top:0px; left:0px; width:300px;height: 100%;"></div>
+        <div id="f2" style="display:none"><img src="https://sapnashree.github.io/myhna/img/about.jpg" style="position:absolute; top:0px; left:0px; width:300px;height: 100%;"></div>
+       
+       
+        <img src="https://sapnashree.github.io/myhna/img/logo.png" style="position: relative;  top: 2%;left: 35%; width: 30%;">
+        <div id="allchat" style="background-color: transparent;position: absolute;bottom: 80px;height: 300px;overflow-y: scroll;overflow-x: hidden;-ms-overflow-style: none;
+    scrollbar-width: none;
+  display: flex;
+  flex-direction: column-reverse; width:300px;"></div>
+
+<form id="inputform" style="display:none" action="" method="post">
+<div id="abcd" class="search-box" style="position:absolute;bottom:0px;background-color:white;opacity:1" onclick="event.preventDefault();event.stopPropagation()">  
+<input id="abc" type="text" autocomplete="off" class="searchTerm search-text"  style="font-size:16px;color:#000;padding:0px;font-family:bold;letter-spacing:0.15; position: absolute;bottom: 5px; left: 9px; height: 39px;width: 230px;padding-left:10px;">
+   
+<button  onclick="search3()" style="cursor:pointer;background-color:transparent;width:50px;height:50px;right:0;width:300px" type="submit" id="xyz" class="searchButton anim ">
+    <img src="img/sendicon.png" style="position:absolute; top:0px; right:5px; width:50px;">
+</button>
+</div>
+
+
+</form>
+
+<form id="peform" style="display:none" action="" method="post">
+<div id="abcd" class="search-box" style="position:absolute;bottom:5px;color:black;background-color:white;opacity:1;width:300px;" onclick="event.preventDefault();event.stopPropagation()">  
+
+    <span style="margin-left:26px;">Email-id:</span><input id="email" type="email" onkeyup="validateEmail()" autocomplete="off" class="searchTerm search-text"  style="font-size:12px;color:#000;padding:0px;font-family:regular;letter-spacing:0.15;
+    height: 20px;width: 150px;margin: 5px 20px;"><br>
+<!--    
+<input type="hidden" id="name">
+<input type="hidden" id="date">
+<input type="hidden" id="destination">
+<input type="hidden" id="city"> -->
+<input type="hidden" id="name" name="name">
+<input type="hidden" id="destination" name="location">
+<input type="hidden" id="phno" name="phno">
+<input type="hidden" id="email" name="email">
+
+
+<button  onclick="search6();" style="cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    font-size:bold;
+    margin-left: 220px;" type="submit" id="xyz" class="searchButton anim ">
+    Submit
+</button>
+</div>
+
+
+
+</form>
+<div id="datecheck"></div>
+
+<div id="inputbuttons2" style="position:absolute;bottom:5px;background-color:white;opacity:1;width:300px;height:50px;display:none;justify-content:center;align-items:center" onclick="event.preventDefault();event.stopPropagation()">
+    <div id="option3" style="background-color: #fff;
+    padding: 5px 16px;
+    font-size: 16px;
+    border-radius: 18px;
+    color: red;
+    margin-right:20px;
+    border: 1px solid red;
+    max-width: 125px;" onclick="search('Hello')">Hello</div><br>
+    <div id="option4" style="background-color: #fff;
+    padding: 5px 16px;
+    margin-left:20px;
+    font-size: 16px;
+    border-radius: 18px;
+    color: red;
+    border: 1px solid red;
+    max-width: 125px;" onclick="search('Hi')">Hi</div>
+</div>
+<div id="inputbuttons" style="position:absolute;bottom:5px;background-color:white;opacity:1;width:300px;height:50px;display:none;justify-content:space-around;align-items:center" onclick="event.preventDefault();event.stopPropagation()">
+    <div id="option1" style="background-color: #fff;
+    padding: 5px 16px;
+    font-size: 14px;
+    border-radius: 18px;
+    color: red;
+    border: 1px solid red;
+    width: 80px;" onclick="loc('2/3bhk')">2/3bhk</div><br>
+    <div id="option2" style="background-color: #fff;
+    padding: 5px 16px;
+    font-size: 14px;
+    border-radius: 18px;
+    color: red;
+    border: 1px solid red;
+    width: 80px;" onclick="loc('Commercial')">Property</div>
+</div>
+     
+    </div>    
+
+<script type="text/javascript">
+hours = new Date().getHours();
+if(hours>5 && hours<=12){
+    msg="Morning";
+}else if(hours>12 && hours<=17){
+    msg="Afternoon"
+}else{
+    msg="Evening"
+}
+ function initial() {
+
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Hello</span>'
+setTimeout(function(){
+   
+    document.getElementById('allchat').prepend(ans)
+    document.getElementById("f2").style.display="block";
+        document.getElementById("f1").style.display="none";
+       
+},500)
+        setTimeout(function(){
+            var ans2=document.createElement('div')
+        ans2.className = 'message answer'
+        ans2.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Good '+msg+'</span>'
+        document.getElementById('allchat').prepend(ans2)
+       
+        document.getElementById("inputbuttons2").style.display="flex"
+       
+       
+        },1000)
+       
+       
+ 
+     }
+     
+    initial()
+ function search(par) {
+        document.getElementById("option3").style.display="none";
+        document.getElementById("option4").style.display="none";
+        var text=par;
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">' + text + '</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">'+text+'! How can I assist you today? </span>'
+setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+    document.getElementById("option3").style.display="block";
+        document.getElementById("option4").style.display="block";
+    document.getElementById("option3").innerHTML="I am Looking for a Residential";
+    document.getElementById("option3").style.fontSize="13px"
+    document.getElementById("option3").setAttribute("onclick","search2('I am Looking for a Residential','property')")
+    document.getElementById("option4").style.fontSize="13px"
+    document.getElementById("option4").setAttribute("onclick","search2('I am looking for a Commercial','property')")
+    document.getElementById("option4").innerHTML="I am Looking for a Commercial";
+},1000)
+       
+       
+     }
+     
+     function search2(typ, sm) {
+    document.getElementById("option3").style.display = "none";
+    document.getElementById("option4").style.display = "none";
+    var text = typ;
+    var ques = document.createElement('div');
+    ques.className = 'message question';
+    ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">' + text + '</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">';
+
+    document.getElementById('allchat').prepend(ques);
+    var ans = document.createElement('div');
+    ans.className = 'message answer';
+    ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Certainly! You are looking for ' + sm + '?</span>';
+
+    setTimeout(function () {
+        document.getElementById('allchat').prepend(ans);
+        document.getElementById("inputbuttons2").style.display = "flex";
+        document.getElementById("option3").style.display = "block";
+        document.getElementById("option4").style.display = "block";
+
+        // Modify the options based on user's response
+        if (typ === 'I am Looking for a Residential') {
+            document.getElementById("option3").innerHTML = "I am Looking for a 2 BHK";
+            document.getElementById("option4").innerHTML = "I am Looking for a 3 BHK";
+            
+            // Set onclick attributes to call loc function
+            document.getElementById("option3").setAttribute("onclick", "loc('2/3bhk', '" + sm + "')");
+            document.getElementById("option4").setAttribute("onclick", "loc('2/3bhk', '" + sm + "')");
+        } else {
+            document.getElementById("option3").innerHTML = "I am Looking for an Office";
+            document.getElementById("option4").innerHTML = "I am Looking for a Shop";
+            
+            // Set onclick attributes to call loc function
+            document.getElementById("option3").setAttribute("onclick", "loc('Commercial', '" + sm + "')");
+            document.getElementById("option4").setAttribute("onclick", "loc('Commercial', '" + sm + "')");
+        }
+    }, 1000);
+}
+
+
+
+function loc(d,sm2){
+       
+        document.getElementById("option1").style.display="none";
+        document.getElementById("option2").style.display="none";
+    if(d=="2/3bhk"){
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">2/3bhk '+sm2+'</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+
+        document.getElementById('allchat').prepend(ques)
+       
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Great! We have some great deals for 2/3bhk. Which location are you planning to buy to?</span>'
+        document.getElementById("destination").innerHTML="2/3bhk "+sm2;
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+        document.getElementById("inputform").style.display="block";
+        document.getElementById("inputbuttons").style.display="none";
+        document.getElementById("inputbuttons2").style.display="none";
+        document.getElementById("abc").placeholder="Location";
+},1000)
+       
+       
+    }else{
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML='<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">Commercial '+sm2+'</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Great! We have some great deals for Commerical Property. Which location are you planning to buy to?</span>'
+
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+        document.getElementById("inputform").style.display="block";
+        document.getElementById("inputbuttons").style.display="none";
+        document.getElementById("inputbuttons2").style.display="none";
+        document.getElementById("abc").placeholder="Location";
+},1000)
+       
+        document.getElementById("destination").innerHTML="Commercial "+sm2;
+    }
+
+   
+}
+
+ function search3() {
+
+        var text = document.getElementById("abc").value;
+        document.getElementById("abc").placeholder="";
+         
+if(text==""){
+            return
+        }
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">' + text + '</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Fantastic choice! I just need a few details from you so that I can share the details.<br>Please enter your name️ </span>'
+       
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+            document.getElementById("abc").placeholder="Please enter your name";
+},1000)
+       
+        document.getElementById("xyz").setAttribute("onclick","search4()")
+        document.getElementById("abc").value="";
+       
+ 
+     }
+
+      function search4() {
+
+        var text = document.getElementById("abc").value;
+        document.getElementById("abc").placeholder="";
+        if(text==""){
+            return
+        }
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">' + text + '</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Great! May i know your Contact Number   '+text+'?️</span>'
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+    document.getElementById("abc").placeholder="Mobile No";
+   
+   
+   
+},1000)
+       
+        document.getElementById("abc").value="";
+        document.getElementById("name").innerHTML=text;
+       document.getElementById("xyz").setAttribute("onclick","search5()")
+       
+        document.getElementById("abc").text="";
+        // document.getElementById("inputform").style.display="none";
+        // document.getElementById("dateform").style.display="inline";
+       
+       
+ 
+     }
+      function search5() {
+         
+document.getElementById("abc").placeholder="";
+        var text = document.getElementById("abc").value;
+        // document.getElementById("abc").setAttribute("onkeyup","valDate('"+text+"')");
+        if(text==""){
+            return
+        }
+        document.getElementById("abc").placeholder="";
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px">' + text + '</span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+document.getElementById("phno").innerHTML=text;
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Perfect! One of our executive will call you shortly Please share your email Id.️ </span<img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+       
+        document.getElementById("peform").style.display="block";
+        document.getElementById("inputform").style.display="none";
+},1000)
+       
+        document.getElementById("abc").value="";
+       
+       
+       
+ 
+     }
+   
+    function search6() {
+
+     
+        var emailId = document.getElementById("email").value;
+       
+        if(emailId=="" || document.getElementById('email').style.backgroundColor != "rgb(118, 255, 116)"){
+    
+            document.getElementById('email').placeholder = "please enter valid Email"
+            
+            document.getElementById('email').style.backgroundColor != "#fff"
+           
+            document.getElementById('email').value =""
+            return
+        }
+       
+        var ques=document.createElement('div')
+        ques.className = 'message question'
+        ques.innerHTML = '<span style="background-color: white;margin-right:5px;padding: 8px 15px;border-radius: 10px 10px 1px;display: inline-block;max-width:140px;overflow:hidden;"><span>Email-Id:<br><span style="font-size:10px;">' + emailId + '</span></span></span><img src="img/usericon.png" style="position:relative; top:20px; right:0px; width:40px;">'
+       
+
+        document.getElementById('allchat').prepend(ques)
+        var ans=document.createElement('div')
+        ans.className = 'message answer'
+        ans.innerHTML = '<img src="img/usericon.png" style="position:relative; top:20px; left:0px; width:40px;"><span style="background-color: white;margin-left: 5px;padding: 8px 15px;border-radius: 10px 10px 10px 1px;display: inline-block;max-width: 140px;">Thank you, have a great day. Our Sales Person  will connect with you soon! ️</span>'
+        setTimeout(function(){
+    document.getElementById('allchat').prepend(ans)
+},1000)
+       
+        document.getElementById("abc").value="";
+       
+        document.getElementById("peform").style.display="none";
+       
+       
+
+     }
+   
+
+   
+    function validateName()
+{
+  var text = document.getElementById("name").value;
+  var regx =/^[a-zA-Z ]{2,30}$/;
+  if(regx.test(text)){
+  document.getElementById('name').style.backgroundColor = "#76FF74"
+ return true;
+  }
+ else{
+document.getElementById('name').style.backgroundColor = "#F0A2A1"
+return false;
+}
+}
+
+
+// ***phone number validation**
+function validatePhone()
+{
+  var text2 = document.getElementById("phno").value;
+  var regx2 = /^[6-9]\d{9}$/;
+  if(regx2.test(text2)){
+      document.getElementById('phno').style.backgroundColor = "#76FF74"
+    return true;
+  }
+  else
+  {document.getElementById('phno').style.backgroundColor = "#F0A2A1"
+  return false;
+     
+  }
+   
+}
+
+
+// // **email address validation***
+function validateEmail() {
+    var emailText = document.getElementById('email').value;
+    var pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+    if (pattern.test(emailText)) {
+   document.getElementById('email').style.backgroundColor = "#76FF74"
+        return true;
+    } else {
+         document.getElementById('email').style.backgroundColor = "#F0A2A1"
+       
+        return false;
+    }
+}
+
+
+// function valDate(date) {
+//     let dateformat = /^(0?[1-9]|[1-2][0-9]|3[01])[\/](0?[1-9]|1[0-2])/;
+    
+//     if (date.match(dateformat)) {
+//         let operator = date.split('/');   
+//         let datepart = [];
+//         if (operator.length > 1) {
+//             datepart = date.split('/');
+//         }
+//         let day = parseInt(datepart[0]);
+//         let month = parseInt(datepart[1]);
+//         let year = parseInt(datepart[2]);     
+//         let ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+//         if (month == 1 || month > 2) {
+//             if (day > ListofDays[month - 1]) {
+//                 console.log("Invalid date")    
+//                 document.getElementById("abc").style.backgroundColor="white";
+//                 document.getElementById("abc").style.color="black";
+//                 return false;
+//             }
+//         } else if (month == 2) {
+//             let leapYear = false;
+//             if ((!(year % 4) && year % 100) || !(year % 400)) leapYear = true;
+//             if ((leapYear == false) && (day >= 29)) {
+//                 console.log("Invalid date")
+//                 document.getElementById("abc").style.backgroundColor="white";
+//                 document.getElementById("abc").style.color="black";
+//                 return false;
+//             }
+//             else
+//                 if ((leapYear == true) && (day > 29)) {
+//                     console.log('Invalid date format!');
+//                     document.getElementById("abc").style.backgroundColor="white";
+//         document.getElementById("abc").style.color="black";
+//                     return false;
+//                 }
+//         }
+//     } else {
+//         console.log("Invalid date format!");
+//         document.getElementById("abc").style.backgroundColor="white";
+//         document.getElementById("abc").style.color="black";
+//         return false;
+//     }
+//     document.getElementById("abc").style.backgroundColor="#F0A2A1";
+//     document.getElementById("abc").style.color="white";
+//     return "Valid date";
+// }
+
+</script>
+
+<script type="text/javascript">
+    function openChat() {
+        document.getElementById("box").style.display = "block";
+        document.getElementById("openChat").style.display = "none";
+    }
+
+    function closeChatInside() {
+        document.getElementById("box").style.display = "none";
+        document.getElementById("openChat").style.display = "block";
+    }
+</script>
